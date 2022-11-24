@@ -7,7 +7,8 @@ int crystals = 0;
 
 //Funcion del gacha
 
-//HOLA QUE ONDA 
+// prueba  
+
 
 //structs de las stats basicas
 
