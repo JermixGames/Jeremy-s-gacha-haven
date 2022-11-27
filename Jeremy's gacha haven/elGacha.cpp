@@ -5,13 +5,10 @@ using namespace std;
 int crystals = 0;
 
 
-//Funcion del gacha
-
-// prueba  
+//juego de alto bajo para ganar Crystrales 
 
 
-//structs de las stats basicas
-
+//structs importantes UwU
 struct PJ
 {
     string name;
@@ -43,8 +40,7 @@ struct Mob
 
 
 
-// personajes 
-
+//funcion del gacha  
 int Gacha()
 {
     int x = 0;
@@ -67,6 +63,7 @@ int Gacha()
 
 }
 
+//menu 
 int DMenu( int M )
 {
     system("cls");
@@ -102,9 +99,9 @@ int main()
 
     crystals += 500;
     int menu = 0;
-    //creacion de personajes 6 strellas
-    
 
+
+    //Creacion de todos los personajes
     PJ personaje[7];
     personaje[0].SetStats("Nahida", "Dendro", 500, 250, 6);
     personaje[1].SetStats("Ember", "Pyro", 500, 250, 6);
