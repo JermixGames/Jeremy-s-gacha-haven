@@ -5,8 +5,64 @@ using namespace std;
 int crystals = 0;
 
 
-//juego de alto bajo para ganar Crystrales 
+//juego de alto bajo para ganar Crystrales   
+void alto_bajo()
+{
+    int submenu;
+    int X;
+    int resp;
+    int attemps;
+    int Cwon;
 
+
+    //submenu 
+    cout << "Seleccion de dificultad\n";
+    cout << "1. Normal: recompensa maxima de 2500 crystals.\n"
+        cout << "2. Dificil: recompensa maxima de 10 000 crystals.\n"
+
+        cin >> submenu;
+
+    //Normal difficult 
+    if (submenu == 1)
+    {
+        X = (rand() % 20);
+
+        attemps = 10;
+
+        do
+        {
+            cin >> resp;
+            if (resp == X)
+            {
+                cout << "Has acertado!!!";
+            }
+            else if (resp < X)
+            {
+                cout << " BAJO!! ";
+                attemps--;
+
+            }
+            else if (resp > X)
+            {
+                cout << " ALTO!! ";
+                attemps--;
+
+            }
+            else if (attemps == 0)
+            {
+                cout << " Buen intento, suerte para la proxima ";
+
+            }
+        } while (resp != X || attemps == 0);
+
+        Cwon = attemps * 250;
+        cout << "HAS GANADO " << Cwon << "Crystals";
+        crystals += Cwon;
+
+        
+       
+    }
+ }
 
 //structs importantes UwU
 struct PJ
@@ -158,8 +214,8 @@ int main()
             break;
 
         case 5:
-            crystals += 500;
-            cout << " consigues 500 cristales YEII";
+            alto_bajo();
+            system("pause");
             break;
         case 6:
             system("cls");
