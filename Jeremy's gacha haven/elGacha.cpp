@@ -1,6 +1,7 @@
 ﻿#include <iostream>
 #include<cstdlib>
 #include<ctime>
+#include<Windows.h>
 using namespace std;
 int crystals = 0;
 
@@ -139,8 +140,11 @@ struct PJ
     int ATK;
     int lvl;
     int stars;
+    bool own = false;
+    bool party = false;
+    int id;
 
-    void SetStats(string n, string e, int a, int b, int c)
+    void SetStats(string n, string e, int a, int b, int c , int d)
     {
         name = n;
         element = e;
@@ -148,6 +152,7 @@ struct PJ
         ATK = b;
         stars = c;
         lvl = 0;
+        id = d;
     }
 };
 struct Mob
@@ -158,8 +163,6 @@ struct Mob
     int ATK;
     int lvl;
 };
-
-
 
 
 //funcion del gacha  
@@ -189,6 +192,7 @@ int Gacha()
 int DMenu( int M )
 {
     system("cls");
+    system("color 0A");
     std::cout << R"(
        _                               _        _____            _             _                           
       | |                             ( )      / ____|          | |           | |                          
@@ -200,14 +204,15 @@ int DMenu( int M )
                                  |___/                                                                     	
 )" << '\n';
 
+
     cout << "You have " << crystals << " crystals!\n" << endl;
-    cout << "0) Status of three characters.\n";
-    cout << "1) Roll Character for 500 crystals?\n";
-    cout << "2) Guarantee a 5 star character by rolling for 1500 crystals.\n";
-    cout << "3) Train character for 1000 crystals.\n";
-    cout << "4) Battle the next enemy (Name: XXXX, Element: XXXX, Level: XXXX)\n";
-    cout << "5) Play Alto-Bajo to farm crystals.\n";
-    cout << "6) Exit the game.\n";
+    cout << "0)  characters Status.\n";//fua en proceso 
+    cout << "1) Roll Character for 500 crystals?\n";// funcionando pero con trabajo por hacer
+    cout << "2) Guarantee a 5 star character by rolling for 1500 crystals.\n";// en proceso 
+    cout << "3) Train character for 1000 crystals.\n";//en proceso 
+    cout << "4) Battle the next enemy (Name: XXXX, Element: XXXX, Level: XXXX)\n";//en proceso 
+    cout << "5) Play Alto-Bajo to farm crystals.\n";//terminado(mejoras visuales pendientes
+    cout << "6) Exit the game.\n";//es lo que mejor funciona 
     cin >> M;
 
     return M;
@@ -217,6 +222,10 @@ int DMenu( int M )
 int main()
 {
 
+    int id1 = 0;
+    int id2;
+    int id3;
+
     srand((unsigned)time(0));
 
     crystals += 500;
@@ -225,19 +234,19 @@ int main()
 
     //Creacion de todos los personajes
     PJ personaje[7];
-    personaje[0].SetStats("Nahida", "Dendro", 500, 250, 6);
-    personaje[1].SetStats("Ember", "Pyro", 500, 250, 6);
-    personaje[2].SetStats("Gaia", "Dendro", 150, 100, 5);
-    personaje[3].SetStats("Blaze", "Pyro", 150, 100, 5);
-    personaje[4].SetStats("Haru", "Dendro", 150, 100, 5);
-    personaje[5].SetStats("Hestia", "Pyro", 150, 100, 5);
+    personaje[0].SetStats("Nahida", "Dendro", 500, 250, 6, 0);
+    personaje[1].SetStats("Ember", "Pyro", 500, 250, 6, 1);
+    personaje[2].SetStats("Gaia", "Dendro", 150, 100, 5, 2);
+    personaje[3].SetStats("Blaze", "Pyro", 150, 100, 5, 3);
+    personaje[4].SetStats("Haru", "Dendro", 150, 100, 5, 4);
+    personaje[5].SetStats("Hestia", "Pyro", 150, 100, 5, 5);
 
     PJ mipj;
     
 
  
 
-
+    //menu principal
     do
     {
         
@@ -246,6 +255,17 @@ int main()
         switch (DMenu(menu))
         {
         case 0:
+
+            
+
+
+            //es el inventario de personajes 
+            //party 
+
+            cout << "Party\n";
+            cout << personaje[id1].name; 
+            system("pause");
+
 
 
             break;
