@@ -17,50 +17,116 @@ void alto_bajo()
 
     //submenu 
     cout << "Seleccion de dificultad\n";
-    cout << "1. Normal: recompensa maxima de 2500 crystals.\n"
-        cout << "2. Dificil: recompensa maxima de 10 000 crystals.\n"
+    cout << "1. Normal: recompensa maxima de 2500 crystals.\n";
+        cout << "2. Dificil: recompensa maxima de 10 000 crystals.\n";
 
         cin >> submenu;
 
     //Normal difficult 
     if (submenu == 1)
     {
-        X = (rand() % 20);
+        cout << "Alto bajo en dificultad Normal\n";
+        cout << "Prueba con numeros del 1 al 20 !!\n";
+        system("pause");
+
+
+
+        X = (rand() % 21);
+
+        attemps = 5;
+
+        do
+        {
+            system("cls");
+            cout << "Te restan: " << attemps  << " intentos \n";
+            cin >> resp;
+            if (resp == X)
+            {
+                cout << "Has acertado!!!\n";
+                system("pause");
+            }
+            else if (resp < X && attemps != 0)
+            {
+                cout << " BAJO!! \n";
+                attemps--;
+                system("pause");
+
+            }
+            else if (resp > X && attemps != 0)
+            {
+                cout << " ALTO!! \n";
+                attemps--;
+                system("pause");
+
+            }
+            else if (attemps == 0)
+            {
+                cout << " Buen intento, suerte para la proxima \n";
+                system("pause");
+                attemps = 0;
+            }
+        } while (resp != X && attemps != 0);
+        system("cls");
+        Cwon = attemps * 500;
+        cout << "HAS GANADO " << Cwon << " Crystals\n";
+        crystals += Cwon;
+        system("pause");
+
+        
+       
+    }
+    //Hard difficult
+    if (submenu == 2)
+    {
+        cout << "Alto bajo en dificultad Dificil\n";
+        cout << "Prueba con numeros del 1 al 100 !!\n";
+        system("pause");
+
+
+
+        X = (rand() % 101);
 
         attemps = 10;
 
         do
         {
+            system("cls");
+            cout << "Te restan: " << attemps << " intentos \n";
             cin >> resp;
             if (resp == X)
             {
-                cout << "Has acertado!!!";
+                cout << "Has acertado!!!\n";
+                system("pause");
             }
-            else if (resp < X)
+            else if (resp < X && attemps != 0)
             {
-                cout << " BAJO!! ";
+                cout << " BAJO!! \n";
                 attemps--;
+                system("pause");
 
             }
-            else if (resp > X)
+            else if (resp > X && attemps != 0)
             {
-                cout << " ALTO!! ";
+                cout << " ALTO!! \n";
                 attemps--;
+                system("pause");
 
             }
             else if (attemps == 0)
             {
-                cout << " Buen intento, suerte para la proxima ";
-
+                cout << " Buen intento, suerte para la proxima \n";
+                system("pause");
+                attemps = 0;
             }
-        } while (resp != X || attemps == 0);
-
-        Cwon = attemps * 250;
-        cout << "HAS GANADO " << Cwon << "Crystals";
+        } while (resp != X && attemps != 0);
+        system("cls");
+        Cwon = attemps * 1000;
+        cout << "HAS GANADO " << Cwon << " Crystals\n";
         crystals += Cwon;
+        system("pause");
 
-        
-       
+
+
     }
  }
 
@@ -215,7 +281,6 @@ int main()
 
         case 5:
             alto_bajo();
-            system("pause");
             break;
         case 6:
             system("cls");
