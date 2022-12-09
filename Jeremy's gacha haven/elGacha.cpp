@@ -188,6 +188,117 @@ int Gacha()
 
 }
 
+
+//menu de personaje 
+PJ PJmenu(PJ C)
+{
+    int men;
+
+    do
+    {
+
+        system("cls");
+        cout << C.name << endl;
+
+        if (C.party == false)
+        {
+
+            cout << "0) Meter a la Party.\n";
+            cout << "1) Entrenar personaje.\n";
+            cout << "2) Ver estadisticas.\n";
+            cout << "3) salir.\n";
+        }
+        if (C.party == true)
+        {
+            cout << "0) Sacar de la Party.\n";
+            cout << "1) Entrenar personaje.\n";
+            cout << "2) Ver estadisticas.\n";
+            cout << "3) salir.\n";
+        }
+        cin >> men;
+
+        switch (men)
+        {
+        case 0:
+            system("cls");
+
+            if (C.party == false)
+            {
+                C.party = true;
+                cout << C.name << " Se a unido a la party";
+                system("pause");
+                men = 1;
+
+            }
+            if (C.party == true && men == 0)
+            {
+                C.party = false;
+                cout << C.name << " Salio de la party";
+                system("pause");
+
+            }
+
+            break;
+        case 1:
+            if (crystals >= 1000)
+            {
+                system("cls");
+
+                cout << C.name << " SUBE DE NIVEL!!!!\n";
+                cout << "|Nivel" << C.lvl << "|ATK" << C.ATK << "|HP" << C.HP << "|\n";
+                cout << "================================================================\n";
+                C.lvl += 1;
+                C.ATK = C.ATK * 1.5;
+                C.HP = C.HP * 1.5;
+
+                cout << "|^^Nivel" << C.lvl << "|^^ATK" << C.ATK << "|^^HP" << C.HP << "|\n";
+                system("pause");
+
+            }
+            else
+            {
+                system("cls");
+
+                cout << " no hay plata \n";
+                system("pause");
+
+
+            }
+            break;
+        case 2:
+            system("cls");
+
+            cout << C.name << endl;
+            cout << "|Nivel" << C.lvl << "|\n" << "|ATK" << C.ATK << "|\n" << "|HP" << C.HP << "|\n";
+            system("pause");
+
+            break;
+        case 3:
+
+
+            men = 3;
+
+
+            break;
+
+
+        default:
+
+
+            break;
+
+
+
+        }
+    }while (men != 3);
+
+        return C;
+
+
+}
+
+
+
 //menu 
 int DMenu( int M )
 {
@@ -206,7 +317,7 @@ int DMenu( int M )
 
 
     cout << "You have " << crystals << " crystals!\n" << endl;
-    cout << "0)  characters Status.\n";//fua en proceso 
+    cout << "0) Characters.\n";//fua en proceso 
     cout << "1) Roll Character for 500 crystals?\n";// funcionando pero con trabajo por hacer
     cout << "2) Guarantee a 5 star character by rolling for 1500 crystals.\n";// en proceso 
     cout << "3) Train character for 1000 crystals.\n";//en proceso 
@@ -223,8 +334,8 @@ int main()
 {
 
     int id1 = 0;
-    int id2;
-    int id3;
+    int pmenu;
+    int use;
 
     srand((unsigned)time(0));
 
@@ -260,19 +371,45 @@ int main()
 
 
             //es el inventario de personajes 
-            //party 
+            do
+            {
+                system("cls");
+                cout << "PERSONAJES \n";
+                for (int p = 0; p <= 5; p++)
+                {
+                    cout << p << "|" << personaje[p].name;
+                    if (personaje[p].own == true)
+                    {
+                        cout << " |DISPONIBLE";
+                    }
+                    cout << endl;
 
-            cout << "Party\n";
-            cout << personaje[id1].name; 
-            system("pause");
+                }
+                cout << "-------------------------------\n";
+                cout << "6|" << "salir\n";
 
-
+                cin >> pmenu;
+                if (pmenu != 6)
+                {
+                    if (personaje[pmenu].own == true)
+                    {
+                        personaje[pmenu] = PJmenu(personaje[pmenu]);
+                    }
+                    if (personaje[pmenu].own == false)
+                    {
+                        cout << "No tienes este personaje aun\n";
+                        system("pause");
+                    }
+                }
+            } while (pmenu != 6);
 
             break;
         case 1:
             if (crystals >= 500) {
                 crystals -= 500;
-                mipj = personaje[Gacha()];
+                use = Gacha();
+                mipj = personaje[use];
+                personaje[use].own = true;
 
                 cout << "te ha tocado " << mipj.name <<endl;
                 system("pause");
