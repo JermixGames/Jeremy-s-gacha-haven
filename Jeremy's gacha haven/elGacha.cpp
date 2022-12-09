@@ -355,13 +355,12 @@ int DMenu( int M )
 
 
     cout << "You have " << crystals << " crystals!\n" << endl;
-    cout << "0) Characters.\n";//fua en proceso 
+    cout << "0) Characters.\n";//terminado por la chuchaaaa
     cout << "1) Roll Character for 500 crystals?\n";// funcionando pero con trabajo por hacer
     cout << "2) Guarantee a 5 star character by rolling for 1500 crystals.\n";// en proceso 
-    cout << "3) Train character for 1000 crystals.\n";//descartado es movido a la seccion  character
-    cout << "4) adentrase en la batalla\n";//en proceso 
-    cout << "5) Play Alto-Bajo to farm crystals.\n";//terminado(mejoras visuales pendientes
-    cout << "6) Exit the game.\n";//es lo que mejor funciona 
+    cout << "3) adentrase en la batalla\n";//ya funciona la chucha 
+    cout << "4) Play Alto-Bajo to farm crystals.\n";//terminado(mejoras visuales pendientes
+    cout << "5) Exit the game.\n";//es lo que mejor funciona 
     cin >> M;
 
     return M;
@@ -474,11 +473,8 @@ int main()
            
             break;
 
+
         case 3:
-
-            break;
-
-        case 4:
             //Sistema de batalla
             do
             {
@@ -534,20 +530,20 @@ int main()
                         cout << "Pierdes 250 Crystals\n";
                         crystals -= 250;
 
+                        system("pause");
                     }
 
 
-                    system("pause");
                 }
 
             } while (pmenu !=2);
 
             break;
 
-        case 5:
+        case 4:
             alto_bajo();
             break;
-        case 6:
+        case 5:
             system("cls");
             std::cout << R"(
 
@@ -564,7 +560,7 @@ int main()
 )" << '\n';
 
 
-            menu = 6;  
+            menu = 5;  
             system("pause");
             break;
 
@@ -572,7 +568,7 @@ int main()
 
             DMenu(menu);
         }
-    } while (menu != 6);
+    } while (menu != 5);
 
     return 0;
 }
