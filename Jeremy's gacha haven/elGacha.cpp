@@ -142,9 +142,9 @@ struct PJ
     int stars;
     bool own = false;
     bool party = false;
-    int id;
 
-    void SetStats(string n, string e, int a, int b, int c , int d)
+
+    void SetStats(string n, string e, int a, int b, int c)
     {
         name = n;
         element = e;
@@ -152,7 +152,7 @@ struct PJ
         ATK = b;
         stars = c;
         lvl = 0;
-        id = d;
+
     }
 };
 struct Mob
@@ -162,6 +162,15 @@ struct Mob
     int HP;
     int ATK;
     int lvl;
+    void SetStats(string n, string e, int a, int b)
+    {
+        name = n;
+        element = e;
+        HP = a;
+        ATK = b;
+        lvl = 0;
+
+    }
 };
 
 
@@ -190,7 +199,7 @@ int Gacha()
 
 
 //menu de personaje 
-PJ PJmenu(PJ C)
+PJ PJmenu(PJ C,int & PartyC)
 {
     int men;
 
@@ -222,18 +231,26 @@ PJ PJmenu(PJ C)
         case 0:
             system("cls");
 
-            if (C.party == false)
+            if (C.party == false && PartyC != 3)
             {
                 C.party = true;
-                cout << C.name << " Se a unido a la party";
+                cout << C.name << " Se a unido a la party\n";
                 system("pause");
                 men = 1;
+                PartyC += 1;
 
             }
             if (C.party == true && men == 0)
             {
                 C.party = false;
-                cout << C.name << " Salio de la party";
+                cout << C.name << " Salio de la party\n";
+                system("pause");
+                PartyC -= 1;
+
+            }
+            if(PartyC == 3 && men == 0 )
+            {
+                cout << " La party esta llena";
                 system("pause");
 
             }
@@ -320,7 +337,7 @@ int DMenu( int M )
     cout << "0) Characters.\n";//fua en proceso 
     cout << "1) Roll Character for 500 crystals?\n";// funcionando pero con trabajo por hacer
     cout << "2) Guarantee a 5 star character by rolling for 1500 crystals.\n";// en proceso 
-    cout << "3) Train character for 1000 crystals.\n";//en proceso 
+    cout << "3) Train character for 1000 crystals.\n";//descartado es movido a la seccion  character
     cout << "4) Battle the next enemy (Name: XXXX, Element: XXXX, Level: XXXX)\n";//en proceso 
     cout << "5) Play Alto-Bajo to farm crystals.\n";//terminado(mejoras visuales pendientes
     cout << "6) Exit the game.\n";//es lo que mejor funciona 
@@ -333,24 +350,24 @@ int DMenu( int M )
 int main()
 {
 
-    int id1 = 0;
+    int Party = 0;
     int pmenu;
     int use;
 
     srand((unsigned)time(0));
 
-    crystals += 500;
+    crystals += 50000;
     int menu = 0;
 
 
     //Creacion de todos los personajes
     PJ personaje[7];
-    personaje[0].SetStats("Nahida", "Dendro", 500, 250, 6, 0);
-    personaje[1].SetStats("Ember", "Pyro", 500, 250, 6, 1);
-    personaje[2].SetStats("Gaia", "Dendro", 150, 100, 5, 2);
-    personaje[3].SetStats("Blaze", "Pyro", 150, 100, 5, 3);
-    personaje[4].SetStats("Haru", "Dendro", 150, 100, 5, 4);
-    personaje[5].SetStats("Hestia", "Pyro", 150, 100, 5, 5);
+    personaje[0].SetStats("Nahida", "Dendro", 500, 250, 6);
+    personaje[1].SetStats("Ember", "Pyro", 500, 250, 6);
+    personaje[2].SetStats("Gaia", "Dendro", 150, 100, 5);
+    personaje[3].SetStats("Blaze", "Pyro", 150, 100, 5);
+    personaje[4].SetStats("Haru", "Dendro", 150, 100, 5);
+    personaje[5].SetStats("Hestia", "Pyro", 150, 100, 5);
 
     PJ mipj;
     
@@ -380,7 +397,12 @@ int main()
                     cout << p << "|" << personaje[p].name;
                     if (personaje[p].own == true)
                     {
-                        cout << " |DISPONIBLE";
+                        cout << " |DISPONIBLE|";
+                    }
+                    if (personaje[p].party == true)
+                    {
+                        cout << " [|PARTY|]";
+
                     }
                     cout << endl;
 
@@ -393,7 +415,7 @@ int main()
                 {
                     if (personaje[pmenu].own == true)
                     {
-                        personaje[pmenu] = PJmenu(personaje[pmenu]);
+                        personaje[pmenu] = PJmenu(personaje[pmenu],Party);
                     }
                     if (personaje[pmenu].own == false)
                     {
