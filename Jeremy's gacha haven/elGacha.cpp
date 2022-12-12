@@ -194,7 +194,7 @@ struct Mob
 int Gacha()
 {
     int x = 0;
-    int S = (rand() % 501);
+    int S = (rand() % 1001);
     if (S >= 300)
     {
         x = 2 + rand() % 4;
@@ -202,10 +202,17 @@ int Gacha()
         return x;
 
     }
-    if (S <= 299)
+    if (S <= 299 && S > 80)
+    {
+        x = 2 + rand() % 4;
+
+        return x;
+
+    }
+    if (S <= 80)
     {
         x = rand() % 2;
-       
+
         return x;
 
     }
