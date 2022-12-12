@@ -26,10 +26,8 @@ void alto_bajo()
     //Normal difficult 
     if (submenu == 1)
     {
-        cout << "Alto bajo en dificultad Normal\n";
-        cout << "Prueba con numeros del 1 al 20 !!\n";
-        system("pause");
-
+ 
+  
 
 
         X = (rand() % 21);
@@ -39,6 +37,8 @@ void alto_bajo()
         do
         {
             system("cls");
+            cout << "Alto bajo en dificultad Normal\n";
+            cout << "Prueba con numeros del 1 al 20 !!\n";
             cout << "Te restan: " << attemps  << " intentos \n";
             cin >> resp;
             if (resp == X)
@@ -79,9 +79,7 @@ void alto_bajo()
     //Hard difficult
     if (submenu == 2)
     {
-        cout << "Alto bajo en dificultad Dificil\n";
-        cout << "Prueba con numeros del 1 al 100 !!\n";
-        system("pause");
+
 
 
 
@@ -92,6 +90,8 @@ void alto_bajo()
         do
         {
             system("cls");
+            cout << "Alto bajo en dificultad Dificil\n";
+            cout << "Prueba con numeros del 1 al 100 !!\n";
             cout << "Te restan: " << attemps << " intentos \n";
             cin >> resp;
             if (resp == X)
@@ -197,7 +197,7 @@ int Gacha()
     int S = (rand() % 1001);
     if (S >= 300)
     {
-        x = 2 + rand() % 4;
+        x = 5 + rand() % 7;
      
         return x;
 
@@ -230,7 +230,8 @@ PJ PJmenu(PJ C,int & PartyC)
     {
 
         system("cls");
-        cout << C.name << endl;
+        cout << C.name << "\n" << C.stars << " ESTRELLAS" << endl;
+       
         cout << "You have " << crystals << " crystals!\n" << endl;
 
         if (C.party == false)
@@ -238,7 +239,7 @@ PJ PJmenu(PJ C,int & PartyC)
 
             cout << "0) Meter a la Party.\n";
             cout << "1) Entrenar personaje|1000 Crystals.\n";
-            cout << "2) Ver estadisticas.\n";
+            cout << "2) Ver estadisticas.\n"; 
             cout << "3) salir.\n";
         }
         if (C.party == true)
@@ -312,7 +313,7 @@ PJ PJmenu(PJ C,int & PartyC)
             system("cls");
 
             cout << C.name << endl;
-            cout << "|Nivel" << C.lvl << "|\n" << "|ATK" << C.ATK << "|\n" << "|HP" << C.HP << "|\n";
+            cout << "|Nivel " << C.lvl << "|\n" << "|ATK " << C.ATK << "|\n" << "|HP " << C.HP << "|\n";
             system("pause");
 
             break;
@@ -362,12 +363,12 @@ int DMenu( int M )
 
 
     cout << "You have " << crystals << " crystals!\n" << endl;
-    cout << "0) Characters.\n";//terminado por la chuchaaaa
-    cout << "1) Roll Character for 500 crystals?\n";// funcionando pero con trabajo por hacer
-    cout << "2) Guarantee a 5 star character by rolling for 1500 crystals.\n";// en proceso 
-    cout << "3) adentrase en la batalla\n";//ya funciona la chucha 
-    cout << "4) Play Alto-Bajo to farm crystals.\n";//terminado(mejoras visuales pendientes
-    cout << "5) Exit the game.\n";//es lo que mejor funciona 
+    cout << "0) Characters.\n";
+    cout << "1) Roll Character for 500 crystals?\n";
+    cout << "2) Guarantee a 5 star character by rolling for 1500 crystals.\n";
+    cout << "3) adentrase en el bosque elemental";
+    cout << "4) Play Alto-Bajo to farm crystals.\n";
+    cout << "5) Exit the game.\n";
     cin >> M;
 
     return M;
@@ -389,14 +390,19 @@ int main()
 
 
     //Creacion de todos los personajes
-    PJ personaje[7];
+    PJ personaje[12];
     personaje[0].SetStats("Nahida", "Dendro", 500, 250, 6);
     personaje[1].SetStats("Ember", "Pyro", 500, 250, 6);
-    personaje[2].SetStats("Gaia", "Dendro", 250, 100, 5);
-    personaje[3].SetStats("Blaze", "Pyro", 250, 100, 5);
-    personaje[4].SetStats("Haru", "Dendro", 250, 100, 5);
-    personaje[5].SetStats("Hestia", "Pyro", 250, 100, 5);
-
+    personaje[2].SetStats("Gaia", "Dendro", 250, 150, 5);
+    personaje[3].SetStats("Blaze", "Pyro", 250, 150, 5);
+    personaje[4].SetStats("Haru", "Dendro", 250, 150, 5);
+    personaje[5].SetStats("Hestia", "Pyro", 250, 150, 5);
+    personaje[6].SetStats("Azula", "Dendro", 180, 100, 4);
+    personaje[7].SetStats("Sira", "Pyro", 180, 100, 4);
+    personaje[8].SetStats("Cyra", "Dendro", 180, 100, 4);
+    personaje[9].SetStats("Azucena", "Pyro", 180, 100, 4);
+    personaje[10].SetStats("Selene", "Dendro", 180, 100, 4);
+    personaje[11].SetStats("Aiden", "Pyro", 180, 100, 4);
     PJ mipj;
     Mob enemie;
     enemie.SetStats("enemigo", "Neutro", 700,200);
@@ -422,7 +428,7 @@ int main()
             {
                 system("cls");
                 cout << "PERSONAJES \n";
-                for (int p = 0; p <= 5; p++)
+                for (int p = 0; p <= 11; p++)
                 {
                     cout << p << "|" << personaje[p].name;
                     if (personaje[p].own == true)
@@ -438,10 +444,10 @@ int main()
 
                 }
                 cout << "-------------------------------\n";
-                cout << "6|" << "salir\n";
+                cout << "12|" << "salir\n";
 
                 cin >> pmenu;
-                if (pmenu != 6)
+                if (pmenu != 12)
                 {
                     if (personaje[pmenu].own == true)
                     {
@@ -453,23 +459,26 @@ int main()
                         system("pause");
                     }
                 }
-            } while (pmenu != 6);
+            } while (pmenu != 12);
 
             break;
         case 1:
             if (crystals >= 500) {
                 crystals -= 500;
                 use = Gacha();
+                system("cls");
+
                 mipj = personaje[use];
                 personaje[use].own = true;
 
-                cout << "te ha tocado " << mipj.name <<endl;
+                cout << "Te ha tocado " << mipj.name << endl<< mipj.stars <<  " ESTRELAS!!!!" << endl;
                 system("pause");
 
             }
             else
             {
-                cout << " no hay plata \n";
+                system("cls");
+                cout << " NO HAY PLATA :c \n";
                 system("pause");
 
             }
@@ -477,7 +486,16 @@ int main()
             break;
 
         case 2:  
-           
+            crystals -= 1500;
+            use = rand() % 2;
+            system("cls");
+
+            mipj = personaje[use];
+            personaje[use].own = true;
+
+            cout << "Te ha tocado " << mipj.name << endl << mipj.stars << " ESTRELAS!!!!" << endl;
+            system("pause");
+
             break;
 
 
@@ -488,10 +506,10 @@ int main()
 
             
                 system("cls");
-                cout << "BOSQUE DE BATALLA\n";
+                cout << "BOSQUE ELEMENTAL\n";
                 cout << "PARTY\n";
                  sumaPW = 0;
-                for (int p = 0; p <= 5; p++)
+                for (int p = 0; p <= 11; p++)
                 {
                 
                     if (personaje[p].party == true)
@@ -520,8 +538,8 @@ int main()
                     if (sumaPW >= enemie.cpower())
                     {
                         cout << "ENEMIGO DERROTADO!!!!\n";
-                        cout << "HAS GANADO 250 Crytals\n";
-                        crystals += 250;
+                        cout << "HAS GANADO 500 Crytals\n";
+                        crystals += 500;
                         cout << "EL siguiente enemigo es mas poderoso, CUIDADO!\n";
                         enemie.ATK = enemie.ATK * 2;
                         enemie.HP = enemie.HP * 2;
@@ -532,10 +550,23 @@ int main()
                     {
 
 
-                        cout << "AUN NO PUEDES CON EL!!!\n";
-                        cout << "Entrena a tus personajes o consigue personajes mas fuertes en el gacha\n";
-                        cout << "Pierdes 250 Crystals\n";
-                        crystals -= 250;
+                        cout << "AUN NO PUEDES CON EL!!!\n\n";
+                        cout << "Entrena a tus personajes o consigue personajes mas fuertes en el gacha\n\n";
+                        
+                        for (int p = 0; p <= 11; p++)
+                        {
+
+                            if (personaje[p].party == true && personaje[p].own == true)
+                            {
+                               personaje[p].party = false;
+                               personaje[p].own = false;
+                               Party -= 1;
+                               cout << "Pierdes a tus personajes. (puedes recuperarlos en el Gacha)\n";
+                            }
+
+
+                        }
+                     
 
                         system("pause");
                     }
